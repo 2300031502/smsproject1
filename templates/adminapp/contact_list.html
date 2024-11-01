@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4">Contact List</h1>
+        <!-- Search Form -->
+        <form method="get" action="" class="form-inline mb-4">
+            <input type="text" name="query" class="form-control mr-2" placeholder="Search by name or email">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+
+        <!-- Display Contacts -->
+        {% for contact in contacts %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title font-weight-bold">{{ contact.name }}</h5>
+                    <p class="card-text">
+                        <strong>Email:</strong> {{ contact.email }}<br>
+                        <strong>Phone:</strong> {{ contact.phone }}<br>
+                        <strong>Address:</strong> {{ contact.address }}
+                    </p>
+                    <a href="{% url 'delete_contact' contact.id %}" class="btn btn-danger mr-2">Delete</a>
+                    <a href="mailto:{{ contact.email }}" class="btn btn-info">Email</a>
+                </div>
+            </div>
+        {% empty %}
+            <p>No contacts found.</p>
+        {% endfor %}
+
+        <!-- Add New Contact Button -->
+        <a href="{% url 'add_contact' %}" class="btn btn-success">Add New Contact</a>
+    </div>
+</body>
+</html>
