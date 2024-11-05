@@ -90,7 +90,7 @@ def delete_task(request, pk):
 
     return redirect('add_task')
 import datetime
-import timedelta
+
 from django.shortcuts import render
 import datetime
 
